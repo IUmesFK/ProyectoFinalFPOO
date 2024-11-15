@@ -1,3 +1,11 @@
 class Escenario{
   
+  /**
+  ----- CONSTRUCTOR -----
+  */
+  
+  Escenario(){
+  
+  }
+  
 }
