@@ -14,7 +14,6 @@ class Cono extends Obstaculo{
   */
   
   @Override
-  
   public void display(){
     textura = loadImage("cono.png");
     super.display();
