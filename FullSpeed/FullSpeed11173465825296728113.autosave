@@ -15,10 +15,8 @@ private int presentacion; // Transparencia actual del logo
 private int estado; // Estado actual del juego, manejado por MaquinaEstados
 private Escenario escenario; // Fondo y capas visuales del juego
 private float deltaTime; // Tiempo entre frames para movimientos suaves
-private int seleccion;// Controla la opción seleccionada en el menú.
 
-
-public void setup() {
+void setup() {
   size(800, 600); // Tamaño de la ventana
   jugador = new Jugador(new PVector(width / 2, height - 50),
     new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
@@ -48,10 +46,9 @@ public void setup() {
   logo = loadImage("Logo.png"); // Carga la imagen del logo
   presentacion = 0; // Transparencia inicial del logo
   velocidadLogo = int(300 * Time.getDeltaTime(frameRate)); // Velocidad de aparición/desaparición del logo
-  seleccion=0;// Opción seleccionada por defecto.
 }
 
-public void draw() {
+void draw() {
   background(0); // Limpia la pantalla con un fondo negro
 
   // Manejador de estados del juego
@@ -80,7 +77,7 @@ public void draw() {
     if (audioMenu.position() >= audioMenu.length()) {
       audioMenu.rewind(); // Reproduce en bucle
     }
-    selector("EMPEZAR");// Mostrar opción de comenzar el juego.
+
     if (key == ' ') { // Cambia al estado de juego al presionar espacio
       estado = MaquinaEstado.JUGANDO;
       audioMenu.pause(); // Pausa la música del menú
@@ -92,10 +89,6 @@ public void draw() {
     // Estado principal del juego
     escenario.display(deltaTime); // Muestra la escena del juego
     audioJuego.play(); // Reproduce la música del juego
-    
-    if (audioJuego.position() >= audioJuego.length()) {
-      audioJuego.rewind(); // Reproduce en bucle
-    }
 
     jugador.display(); // Muestra al jugador en pantalla
     spawnerO.generarObstaculo(); // Genera nuevos obstáculos
@@ -110,10 +103,10 @@ public void draw() {
 
     spawnerO.verificarColisionObstaculoJugador(jugador); // Verifica colisiones entre el jugador y obstáculos
 
-    if (jugador.getDurabilidad() == 0) { // Cambia al estado de derrota
+    if (key == 'c') { // Cambia al estado de derrota
       estado = MaquinaEstado.DERROTA;
       audioJuego.pause(); // Pausa la música del juego
-      //println("se apreto c ");
+      println("se apreto c ");
     }
     if (key == 'v') { // Cambia al estado de victoria
       estado = MaquinaEstado.VICTORIA;
@@ -126,51 +119,22 @@ public void draw() {
     // Pantalla de derrota
     audioDerrota.play(); // Reproduce la música de derrota
     derrota.mostrar(); // Muestra la pantalla de derrota
-    selector("REINTENTAR"); // Mostrar opción de reiniciar.
-    
     if (key == 'o') { // Reinicia el juego al presionar "o"
       estado = MaquinaEstado.JUGANDO;
-      audioDerrota.pause();
-      audioJuego.rewind();
       audioJuego.play(); // Reanuda la música del juego
-   println("Cambiando a estado jugando");
-   jugador.setDurabilidad(100);
-  
-}
+      println("se apreto o ");
+    }
     break;
 
   case MaquinaEstado.VICTORIA:
     // Pantalla de victoria
     audioVictoria.play(); // Reproduce la música de victoria
     victoria.mostrar(); // Muestra la pantalla de victoria
-    selector("JUGAR"); // Mostrar opción de volver a jugar
     break;
   }
 }
 
-// Método para mostrar las opciones del menú.
-public void selector(String nombre) {
-  textSize(40); // Tamaño de la fuente.
-  if (seleccion == 0) {
-    fill(255,0,0);
-    text(nombre, width - 550, height/2-200); // Mostrar texto seleccionado.
-  } else {
-    fill(225);
-    text(nombre, width - 550, height/2-200);
-    jugador.setDurabilidad(100);
-    jugador.setPosicion(new PVector(width / 2, height - 50));
-  }
-  if (seleccion == 1) {
-    fill(225,0,0);
-    text("SALIR", width - 300, height/2-200);
-  } else {
-    fill(225);
-    text("SALIR", width - 300, height/2-200);
-  }
-}
-
-
-public void keyPressed() {
+void keyPressed() {
   // Maneja las teclas de dirección para activar movimiento
   if (key == 'W' || key == 'w' || keyCode == UP) joyPad.setUpPressed(true);
   if (key == 'S' || key == 's' || keyCode == DOWN) joyPad.setDownPressed(true);
@@ -178,32 +142,10 @@ public void keyPressed() {
   if (key == 'D' || key == 'd' || keyCode == RIGHT) joyPad.setRightPressed(true);
 }
 
-public void keyReleased() {
+void keyReleased() {
   // Maneja las teclas de dirección para desactivar movimiento
   if (key == 'W' || key == 'w' || keyCode == UP) joyPad.setUpPressed(false);
   if (key == 'S' || key == 's' || keyCode == DOWN) joyPad.setDownPressed(false);
   if (key == 'A' || key == 'a' || keyCode == LEFT) joyPad.setLeftPresssed(false);
   if (key == 'D' || key == 'd' || keyCode == RIGHT) joyPad.setRightPressed(false);
-
-  
- 
- if (estado == MaquinaEstado.DERROTA && key == 'o') {
-        estado = MaquinaEstado.JUGANDO;
-        audioDerrota.pause();
-        audioJuego.play();
-    }
- 
- if (key == CODED) {
-    if (keyCode == LEFT) seleccion = (seleccion - 1 + 2) % 2;
-    else if (keyCode == RIGHT) seleccion = (seleccion + 1) % 2;
-  }
-  if (keyCode == ENTER) {
-    if (seleccion == 0) {
-      audioMenu.pause();
-      estado = MaquinaEstado.JUGANDO;
-    } else if (seleccion == 1) {
-      exit(); // Salir del programa.
-    }
-  } 
-  
 }

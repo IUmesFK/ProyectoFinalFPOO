@@ -1,8 +1,11 @@
-class Obstaculo extends GameObject{
+public class Obstaculo extends GameObject{
   
   protected PVector velocidad;
+  /**
+  ----- CONSTRUCTOR -----
+  */
   
-  Obstaculo(){
+  public Obstaculo(){
   
   }
   

@@ -1,11 +1,19 @@
-class SpawnerObstaculo{
+public class SpawnerObstaculo{
   
   private ArrayList<Obstaculo> obstaculos;
   private int ultimoTmp;
   
-  SpawnerObstaculo(){
+  /**
+  ----- CONSTRUCTOR -----
+  */
+  
+  public SpawnerObstaculo(){
     obstaculos = new ArrayList<Obstaculo>();
   }
+  
+  /**
+  ----- MÉTODOS -----
+  */
   
     public void generarObstaculo(){
     int tiempoActual = millis(); 

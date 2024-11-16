@@ -1,4 +1,4 @@
-class JoyPad{
+public class JoyPad{
   
   private boolean leftPressed;
   private boolean rightPressed;
@@ -9,7 +9,7 @@ class JoyPad{
   ----- CONSTRUCTOR -----
   */
   
-  JoyPad() {
+ public  JoyPad() {
     
   }
 

@@ -1,10 +1,10 @@
-class Roca extends Obstaculo{
+public class Roca extends Obstaculo{
   
   /**
   ----- CONSTRUCTOR -----
   */
   
-  Roca(PVector posicion, PVector velocidad){
+  public Roca(PVector posicion, PVector velocidad){
     this.posicion = posicion;
     this.velocidad = velocidad;
   }

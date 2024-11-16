@@ -3,17 +3,20 @@
  * Representa el menú principal del juego.
  */
 
-class Menu{
+public class Menu{
   private PImage imagen; // Imagen que representa el menú principal
 
-  //Constructor por defecto
+  /**
+  ----- CONSTRUCTOR -----
+  */
+  
   public Menu() {
     imagen = loadImage("Menu.png"); // Cargar la imagen del menú
   }
 
-
-
-  //Dibuja la imagen del menú en la pantalla, ocupando todo el tamaño de la ventana.
+  /**
+  ----- MÉTODOS -----
+  */
 
   public void mostrar() {
     image(imagen, 0, 0, width, height); // Dibuja la imagen del menú en la posición (0, 0)

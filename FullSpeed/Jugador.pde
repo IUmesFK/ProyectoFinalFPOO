@@ -1,4 +1,4 @@
-class Jugador extends GameObject implements IVisualizable{
+public class Jugador extends GameObject implements IVisualizable{
   
   private int durabilidad;
   private PVector velocidad;
@@ -16,6 +16,11 @@ class Jugador extends GameObject implements IVisualizable{
   /**
   ----- SETTERS Y GETTERS -----
   */
+  
+  public void setDurabilidad(int durabilidad){
+  this.durabilidad=durabilidad;
+  }
+  
   
   public int getDurabilidad(){
     return this.durabilidad;
