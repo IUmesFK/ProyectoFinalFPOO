@@ -24,17 +24,24 @@ class Jugador extends GameObject implements IVisualizable{
   public void mover(int direccion){
     switch(direccion){
       case 1: // Se mueve hacia arriba
+        if(this.posicion.y > 40){
         this.posicion.y -= this.velocidad.y;
+        }
         break;
       case 2: // Se mueve hacia abajo
+        if(this.posicion.y < height - 40){
         this.posicion.y += this.velocidad.y;
+        }
         break;
       case 3: // Se mueve hacia la izquierda
+        if(this.posicion.x > width / 2 - 80){
         this.posicion.x -= this.velocidad.x;
+        }
         break;
       case 4: // Se mueve hacia la derecha
+        if(this.posicion.x < width / 2 + 80){
         this.posicion.x += this.velocidad.x;
-        
+        }
         break;
     }
   }
