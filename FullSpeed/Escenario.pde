@@ -10,19 +10,19 @@ class Escenario {
     capas[0] = new LayerImage(new PVector(), new PVector(), "fondo.png"); 
     // Capa 0: Fondo de la escena, no tiene movimiento (velocidad = (0, 0))
 
-    capas[1] = new LayerImage(new PVector(width / 2, height / 2), new PVector(), "pista.png");
+    capas[1] = new LayerImage(new PVector(0, height / 2), new PVector(), "pista.png");
     // Capa 1: Imagen de pista que comienza desde la posición (0, 0)
 
-    capas[2] = new LayerImage(new PVector(width / 2, height / 2), new PVector(0, height), "pista.png");
+    capas[2] = new LayerImage(new PVector(0, height / 2), new PVector(0, height), "pista.png");
     // Capa 2: Imagen de pista, comienza al final del eje vertical (posición inicial: (0, height))
 
-    capas[3] = new LayerImage(new PVector(width, height), new PVector(), "arbol.png");
+    capas[3] = new LayerImage(new PVector(0, height), new PVector(), "arbol.png");
     // Capa 3: Imagen de árbol que comienza desde (0, 0)
 
-    capas[4] = new LayerImage(new PVector(width, height), new PVector(0, height), "arbol.png");
+    capas[4] = new LayerImage(new PVector(0, height), new PVector(0, height), "arbol.png");
     // Capa 4: Imagen de árbol que comienza al final del eje vertical
 
-    capas[5] = new LayerImage(new PVector(width, height), new PVector(0, height), "arbol.png");
+    capas[5] = new LayerImage(new PVector(0, height), new PVector(0, height), "arbol.png");
     // Capa 5: Otra imagen de árbol que también comienza desde el final del eje vertical
   }
 
