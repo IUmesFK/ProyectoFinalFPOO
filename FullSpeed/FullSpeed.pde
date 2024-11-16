@@ -89,6 +89,10 @@ void draw() {
     // Estado principal del juego
     escenario.display(deltaTime); // Muestra la escena del juego
     audioJuego.play(); // Reproduce la música del juego
+    
+    if (audioJuego.position() >= audioJuego.length()) {
+      audioJuego.rewind(); // Reproduce en bucle
+    }
 
     jugador.display(); // Muestra al jugador en pantalla
     spawnerO.generarObstaculo(); // Genera nuevos obstáculos

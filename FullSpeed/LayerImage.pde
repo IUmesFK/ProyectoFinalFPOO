@@ -14,13 +14,9 @@ class LayerImage {
     this.posicion = posicion;   // Asignar posición
     this.imagen = loadImage(pathImage); // Cargar la imagen desde la ruta especificada
     
-    // Verificar si la imagen se cargó correctamente
-    if (this.imagen == null) {
-      println("Error: No se pudo cargar la imagen desde la ruta " + pathImage);
-    } else {
-      // Redimensionar la imagen para que tenga un ancho ajustado al canvas y mantenga un pequeño desbordamiento
-      this.imagen.resize(width + 4, height);
-    }
+
+    this.imagen.resize(width + 4, height + 4);
+    
   }
 
   /**
@@ -35,10 +31,10 @@ class LayerImage {
     //Método para actualizar la posición de la capa
   
   public void updatePosition(float deltaTime) {
-    println(this.posicion.x); // Mostrar la posición actual de la capa en la consola 
+    //println(this.posicion.x); // Mostrar la posición actual de la capa en la consola 
     
     // Actualizar la posición en el eje Y, desplazándola hacia arriba según la velocidad y deltaTime
-    this.posicion.y -= (this.velocidad.y * deltaTime); 
+    this.posicion.y -= (this.velocidad.y * deltaTime);
     
     // Si la capa sale del límite superior de la pantalla, reubicarla al límite inferior
     if (this.posicion.y < -height) {

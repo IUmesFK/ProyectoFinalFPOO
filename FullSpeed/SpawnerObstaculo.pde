@@ -13,10 +13,10 @@ class SpawnerObstaculo{
       int tipoObstaculo = int(random(1, 3));
       switch(tipoObstaculo){
         case 1: // dibujar cono
-          obstaculos.add(new Cono(new PVector(random(width/2 - 40, width/2 +40), 0), new PVector(0, 150*Time.getDeltaTime(frameRate))));
+          obstaculos.add(new Cono(new PVector(random(width/2 - 80, width/2 + 80), 0), new PVector(0, 150*Time.getDeltaTime(frameRate))));
           break;
         case 2: // dibujar roca
-          obstaculos.add(new Roca(new PVector(random(width/2 - 40, width/2 +40), 0), new PVector(0, 150*Time.getDeltaTime(frameRate))));
+          obstaculos.add(new Roca(new PVector(random(width/2 - 80, width/2 + 80), 0), new PVector(0, 150*Time.getDeltaTime(frameRate))));
           break;
       }
       ultimoTmp = tiempoActual;

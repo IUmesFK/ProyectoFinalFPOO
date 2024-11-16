@@ -11,7 +11,7 @@ class Obstaculo extends GameObject{
   */
   
   public void display(){
-    image(textura, this.posicion.x, this.posicion.y, 30, 30);
+    image(textura, this.posicion.x, this.posicion.y, 40, 40);
   }
   
   @Override

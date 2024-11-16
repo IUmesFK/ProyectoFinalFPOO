@@ -18,7 +18,7 @@ class Jugador extends GameObject implements IVisualizable{
   public void display(){
     imageMode(CENTER);
     textura = loadImage("auto1.png");
-    image(textura, this.posicion.x, this.posicion.y, 40, 40);
+    image(textura, this.posicion.x, this.posicion.y, 50, 50);
   }
   
   public void mover(int direccion){
@@ -34,6 +34,7 @@ class Jugador extends GameObject implements IVisualizable{
         break;
       case 4: // Se mueve hacia la derecha
         this.posicion.x += this.velocidad.x;
+        
         break;
     }
   }
