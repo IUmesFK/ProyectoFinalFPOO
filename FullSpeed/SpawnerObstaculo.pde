@@ -47,6 +47,7 @@ class SpawnerObstaculo{
     for(int i = 0; i < obstaculos.size(); i++){
       Obstaculo obs = obstaculos.get(i);
       if(PVector.dist(jugador.getPosicion(), obs.getPosicion()) < 25){
+        jugador.debilitar();
         obstaculos.remove(i);
       }
     }

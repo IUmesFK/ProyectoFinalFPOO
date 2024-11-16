@@ -1,5 +1,6 @@
 class Jugador extends GameObject implements IVisualizable{
   
+  private int durabilidad;
   private PVector velocidad;
   
   /**
@@ -9,6 +10,7 @@ class Jugador extends GameObject implements IVisualizable{
   Jugador(PVector posicion, PVector velocidad){
     this.posicion = posicion;
     this.velocidad = velocidad;
+    this.durabilidad = 100;
   }
   
   /**
@@ -44,5 +46,10 @@ class Jugador extends GameObject implements IVisualizable{
         }
         break;
     }
+  }
+  
+  public void debilitar(){
+    this.durabilidad -= 10;
+    println("Durabilidad: " + this.durabilidad);
   }
 }
