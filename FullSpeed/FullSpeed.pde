@@ -113,6 +113,7 @@ public void draw() {
     if (jugador.getDurabilidad() == 0) { // Cambia al estado de derrota
       estado = MaquinaEstado.DERROTA;
       audioJuego.pause(); // Pausa la música del juego
+      audioDerrota.rewind();
       //println("se apreto c ");
     }
     if (key == 'v') { // Cambia al estado de victoria
@@ -157,8 +158,8 @@ public void selector(String nombre) {
   } else {
     fill(225);
     text(nombre, width - 550, height/2-200);
-    jugador.setDurabilidad(100);
-    jugador.setPosicion(new PVector(width / 2, height - 50));
+    
+    
   }
   if (seleccion == 1) {
     fill(225,0,0);
@@ -201,6 +202,8 @@ public void keyReleased() {
     if (seleccion == 0) {
       audioMenu.pause();
       estado = MaquinaEstado.JUGANDO;
+    jugador.setDurabilidad(100);
+    jugador.setPosicion(new PVector(width / 2, height - 50));
     } else if (seleccion == 1) {
       exit(); // Salir del programa.
     }
