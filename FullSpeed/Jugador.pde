@@ -14,6 +14,14 @@ class Jugador extends GameObject implements IVisualizable{
   }
   
   /**
+  ----- SETTERS Y GETTERS -----
+  */
+  
+  public int getDurabilidad(){
+    return this.durabilidad;
+  }
+  
+  /**
   ----- MÉTODOS -----
   */
   

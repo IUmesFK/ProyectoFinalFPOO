@@ -107,10 +107,10 @@ void draw() {
 
     spawnerO.verificarColisionObstaculoJugador(jugador); // Verifica colisiones entre el jugador y obstáculos
 
-    if (key == 'c') { // Cambia al estado de derrota
+    if (jugador.getDurabilidad() == 0) { // Cambia al estado de derrota
       estado = MaquinaEstado.DERROTA;
       audioJuego.pause(); // Pausa la música del juego
-      println("se apreto c ");
+      //println("se apreto c ");
     }
     if (key == 'v') { // Cambia al estado de victoria
       estado = MaquinaEstado.VICTORIA;
