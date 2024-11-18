@@ -4,6 +4,7 @@ import ddf.minim.*; // Importa la librería Minim para manejar audio
 private Jugador jugador; // Representa al jugador en el juego
 private JoyPad joyPad; // Controlador para manejar el movimiento del jugador
 private SpawnerObstaculo spawnerO; // Se encarga de generar y gestionar obstáculos
+private Hud hud;
 private Derrota derrota; // Clase para manejar el estado de derrota
 private Victoria victoria; // Clase para manejar el estado de victoria
 private Menu menu; // Clase para el menú principal
@@ -32,6 +33,8 @@ public void setup() {
   deltaTime = 1.0 / framesPorSegundo; // Calcula deltaTime para movimientos suaves
 
   escenario = new Escenario(); // Inicializa la escena del juego con capas visuales
+
+  hud = new Hud(); 
 
   estado = MaquinaEstado.LOGO; // Estado inicial del juego
   derrota = new Derrota(); // Inicializa el estado de derrota
@@ -98,6 +101,9 @@ public void draw() {
     }
 
     jugador.display(); // Muestra al jugador en pantalla
+    jugador.calcularPuntaje();
+    hud.mostrarTiempo(); // Muestra el tiempo restante en la parte superior izquierda
+    hud.mostrarPuntaje(jugador); // Muestra el puntaje en la parte superior derecha
     spawnerO.generarObstaculo(); // Genera nuevos obstáculos
     spawnerO.mostrarObstaculos(); // Muestra los obstáculos en pantalla
     spawnerO.eliminarObstaculos(); // Elimina obstáculos fuera de la pantalla
@@ -116,10 +122,10 @@ public void draw() {
       audioDerrota.rewind();
       //println("se apreto c ");
     }
-    if (key == 'v') { // Cambia al estado de victoria
+    if (hud.getTiempoRestante() == 0) { // Cambia al estado de victoria
       estado = MaquinaEstado.VICTORIA;
       audioJuego.pause(); // Pausa la música del juego
-      println("se apreto v");
+      //println("se apreto v");
     }
     break;
 

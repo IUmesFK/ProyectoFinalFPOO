@@ -2,6 +2,8 @@ public class Jugador extends GameObject implements IVisualizable{
   
   private int durabilidad;
   private PVector velocidad;
+  private int puntaje;
+  private int tiempoAnterior;
   
   /**
   ----- CONSTRUCTOR -----
@@ -11,6 +13,7 @@ public class Jugador extends GameObject implements IVisualizable{
     this.posicion = posicion;
     this.velocidad = velocidad;
     this.durabilidad = 100;
+    this.tiempoAnterior = millis();
   }
   
   /**
@@ -25,6 +28,11 @@ public class Jugador extends GameObject implements IVisualizable{
   public int getDurabilidad(){
     return this.durabilidad;
   }
+  
+  public int getPuntaje(){
+    return this.puntaje;
+  }
+  
   
   /**
   ----- MÉTODOS -----
@@ -65,4 +73,13 @@ public class Jugador extends GameObject implements IVisualizable{
     this.durabilidad -= 10;
     println("Durabilidad: " + this.durabilidad);
   }
+  
+  public void calcularPuntaje(){
+  int tiempoActual = millis();
+    if (tiempoActual - tiempoAnterior >= 1000) { // Si el tiempo actual - el tiempo anterior es menor 1000 milisegundos (1 segundo)
+      puntaje += 100; // se suma 100 a puntaje
+      tiempoAnterior = tiempoActual; // Se asigna el valor de tiempo actual al tiempo anterior
+    }
+  }
+
 }
