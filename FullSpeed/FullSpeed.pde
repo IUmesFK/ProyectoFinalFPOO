@@ -160,19 +160,23 @@ public void selector(String nombre) {
   textSize(40); // Tamaño de la fuente.
   if (seleccion == 0) {
     fill(255,0,0);
-    text(nombre, width - 550, height/2-200); // Mostrar texto seleccionado.
+    textAlign(CENTER);
+    text(nombre, width/2 - 150, height/2-200); // Mostrar texto seleccionado.
   } else {
     fill(225);
-    text(nombre, width - 550, height/2-200);
+    textAlign(CENTER);
+    text(nombre, width/2 - 150, height/2-200);
     
     
   }
   if (seleccion == 1) {
     fill(225,0,0);
-    text("SALIR", width - 300, height/2-200);
+    textAlign(CENTER);
+    text("SALIR", width - 200, height/2-200);
   } else {
     fill(225);
-    text("SALIR", width - 300, height/2-200);
+    textAlign(CENTER);
+    text("SALIR", width - 200, height/2-200);
   }
 }
 
