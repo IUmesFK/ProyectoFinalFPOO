@@ -122,8 +122,8 @@ public void draw() {
       audioDerrota.rewind();
       //println("se apreto c ");
     }
-    if (hud.getTiempoRestante() == 0) { // Cambia al estado de victoria
-      estado = MaquinaEstado.VICTORIA;
+    if (hud.getTiempoRestante() == 0) { // Si el tiempo llega a 0
+      estado = MaquinaEstado.VICTORIA; // se cambia de estado
       audioJuego.pause(); // Pausa la música del juego
       //println("se apreto v");
     }
