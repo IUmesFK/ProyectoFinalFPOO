@@ -1,5 +1,6 @@
 class Hud{
   
+  private int tiempoInicio; 
   private int tiempoTranscurrido;
   private int tiempoRestante;
   private int cuentaRegresiva;
@@ -9,7 +10,8 @@ class Hud{
   */
   
   Hud(){
-    
+   this.tiempoInicio = millis();  
+    this.cuentaRegresiva = 60; 
   }
   
   /**
@@ -24,10 +26,14 @@ class Hud{
   ----- MÉTODOS -----
   */
   
+   public void reiniciarTiempo() {
+    this.tiempoInicio = millis();  // Reinicia el tiempo al momento actual
+  }
+  
   public void mostrarTiempo(){
-    this.tiempoTranscurrido = millis() / 1000;
-    this.cuentaRegresiva = 60;
-    this.tiempoRestante = cuentaRegresiva - tiempoTranscurrido;
+    this.tiempoTranscurrido = (millis() -this.tiempoInicio)/ 1000;
+   
+    this.tiempoRestante = this.cuentaRegresiva - this.tiempoTranscurrido;
     
     fill(255);
     textSize(20);

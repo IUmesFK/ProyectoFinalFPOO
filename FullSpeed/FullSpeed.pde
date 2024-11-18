@@ -1,31 +1,31 @@
-import ddf.minim.*; // Importa la librería Minim para manejar audio
+import ddf.minim.*; 
 
 // Declaración de las variables principales del juego
-private Jugador jugador; // Representa al jugador en el juego
-private JoyPad joyPad; // Controlador para manejar el movimiento del jugador
-private SpawnerObstaculo spawnerO; // Se encarga de generar y gestionar obstáculos
+private Jugador jugador; 
+private JoyPad joyPad; 
+private SpawnerObstaculo spawnerO; 
 private Hud hud;
-private Derrota derrota; // Clase para manejar el estado de derrota
-private Victoria victoria; // Clase para manejar el estado de victoria
-private Menu menu; // Clase para el menú principal
-private Minim sonido; // Manejo de audio
-private AudioPlayer audioMenu, audioJuego, audioDerrota, audioVictoria; // Archivos de audio para cada estado
-private PImage logo; // Imagen del logo para la pantalla de introducción
-private int velocidadLogo; // Velocidad con la que el logo aparece y desaparece
-private int presentacion; // Transparencia actual del logo
-private int estado; // Estado actual del juego, manejado por MaquinaEstados
-private Escenario escenario; // Fondo y capas visuales del juego
-private float deltaTime; // Tiempo entre frames para movimientos suaves
-private int seleccion;// Controla la opción seleccionada en el menú.
+private Derrota derrota; 
+private Victoria victoria; 
+private Menu menu; 
+private Minim sonido; 
+private AudioPlayer audioMenu, audioJuego, audioDerrota, audioVictoria; 
+private PImage logo; 
+private int velocidadLogo; 
+private int presentacion; 
+private int estado; 
+private Escenario escenario; 
+private float deltaTime; 
+private int seleccion;
 
 
 public void setup() {
-  size(800, 600); // Tamaño de la ventana
+  size(800, 600); 
   jugador = new Jugador(new PVector(width / 2, height - 50),
-    new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
+  new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
   // Inicializa el jugador en el centro inferior de la pantalla con velocidad dependiente de deltaTime
 
-  joyPad = new JoyPad(); // Inicializa el controlador del jugador
+  joyPad = new JoyPad(); 
   spawnerO = new SpawnerObstaculo(); // Inicializa el generador de obstáculos
   frameRate(60); // Configura la tasa de cuadros por segundo
 
@@ -48,7 +48,7 @@ public void setup() {
   audioDerrota = sonido.loadFile("derrota.mp3");
   audioVictoria = sonido.loadFile("victoria.mp3");
 
-  logo = loadImage("Logo.png"); // Carga la imagen del logo
+  logo = loadImage("Logo.png"); 
   presentacion = 0; // Transparencia inicial del logo
   velocidadLogo = int(300 * Time.getDeltaTime(frameRate)); // Velocidad de aparición/desaparición del logo
   seleccion=0;// Opción seleccionada por defecto.
@@ -214,6 +214,8 @@ public void keyReleased() {
       estado = MaquinaEstado.JUGANDO;
     jugador.setDurabilidad(100);
     jugador.setPosicion(new PVector(width / 2, height - 50));
+    hud.reiniciarTiempo();
+    jugador.setPuntaje(0);
     } else if (seleccion == 1) {
       exit(); // Salir del programa.
     }
