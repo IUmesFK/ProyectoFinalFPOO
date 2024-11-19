@@ -221,6 +221,9 @@ public void keyReleased() {
       jugador.setVelocidad(new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
       hud.reiniciarTiempo();
       jugador.setPuntaje(0);
+      jugador.setContFrames(1);
+      jugador.setXFrame(0);
+      jugador.setYFrame(0);
     } else if (seleccion == 1) {
       exit(); // Salir del programa.
     }

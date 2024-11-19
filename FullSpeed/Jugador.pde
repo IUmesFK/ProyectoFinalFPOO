@@ -33,6 +33,18 @@ public class Jugador extends GameObject implements IVisualizable{
   ----- SETTERS Y GETTERS -----
   */
   
+  public void setContFrames(int contFrames){
+    this.contFrames = contFrames;
+  }
+  
+  public void setXFrame(int xFrame){
+    this.xFrame = xFrame;
+  }
+  
+  public void setYFrame(int yFrame){
+    this.yFrame = yFrame;
+  }
+  
   public void setVelocidad(PVector velocidad){
     this.velocidad = velocidad;
   }
@@ -132,6 +144,7 @@ public class Jugador extends GameObject implements IVisualizable{
         }
       }
     this.velocidad = new PVector(0, 0); // Al explotar el auto, se setea su velocidad en 0 en ambos ejes, provocando que no pueda moverse por tener el auto destrozado
+
   }
   
 }
