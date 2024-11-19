@@ -17,10 +17,12 @@ private int estado;
 private Escenario escenario; 
 private float deltaTime; 
 private int seleccion;
+private int tiempoInicial; // Se usara para el estado DERROTA_EXPLOSION
 
 
 public void setup() {
   frameRate(60);
+// Usamos el renderizador P2D y no el que viene por defecto (JAVA2D) ya que al tener grafica dedicada podemos sacarle mayor provecho en el apartado grafico debido a que usamos muchas imagenes, en caso de tener problemas, sacar el P2D  
   size(800, 600, P2D); 
   jugador = new Jugador(new PVector(width / 2, height - 50),
   new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
@@ -85,10 +87,9 @@ public void draw() {
       audioMenu.rewind(); // Reproduce en bucle
     }
     selector("EMPEZAR");// Mostrar opción de comenzar el juego.
-    if (key == ' ') { // Cambia al estado de juego al presionar espacio
+    if (keyCode == ENTER) { // Cambia al estado de juego al presionar espacio
       estado = MaquinaEstado.JUGANDO;
       audioMenu.pause(); // Pausa la música del menú
-      println("se apreto espacio");
     }
     break;
 
@@ -122,19 +123,30 @@ public void draw() {
       estado = MaquinaEstado.DERROTA_EXPLOSION;
       audioJuego.pause();
       audioDerrota.rewind();
-      //println("se apreto c ");
     }
     if (hud.getTiempoRestante() == 0) { // Si el tiempo llega a 0
       estado = MaquinaEstado.VICTORIA; // se cambia de estado
       audioJuego.pause(); // Pausa la música del juego
-      //println("se apreto v");
     }
     break;
 
   case MaquinaEstado.DERROTA_EXPLOSION:
     
-    
-    
+    escenario.display(deltaTime);
+    jugador.display();
+
+    jugador.explotarAuto();
+
+    if (tiempoInicial == 0) { // Si tiempo inicial es igual a 0, almacenara el tiempo en milisegundos desde que se entro al estado DERROTA_EXPLOSION
+        tiempoInicial = millis();
+    }
+
+    int tiempoActual = millis(); //
+    if (tiempoActual - tiempoInicial > 1500) { // Dura 1 segundo y medio
+        estado = MaquinaEstado.DERROTA_PANTALLA; // Cambia de estado
+        tiempoInicial = 0; // Reinicia el tiempo inicial
+    }
+    tiempoActual = 0;
     break;
     
   case MaquinaEstado.DERROTA_PANTALLA:
@@ -142,16 +154,6 @@ public void draw() {
     audioDerrota.play(); // Reproduce la música de derrota
     derrota.mostrar(); // Muestra la pantalla de derrota
     selector("REINTENTAR"); // Mostrar opción de reiniciar.
-    
-    if (key == 'o') { // Reinicia el juego al presionar "o"
-      estado = MaquinaEstado.JUGANDO;
-      audioDerrota.pause();
-      audioJuego.rewind();
-      audioJuego.play(); // Reanuda la música del juego
-   println("Cambiando a estado jugando");
-   jugador.setDurabilidad(100);
-  
-}
     break;
 
   case MaquinaEstado.VICTORIA:
@@ -204,13 +206,6 @@ public void keyReleased() {
   if (key == 'A' || key == 'a' || keyCode == LEFT) joyPad.setLeftPresssed(false);
   if (key == 'D' || key == 'd' || keyCode == RIGHT) joyPad.setRightPressed(false);
 
-  
- 
- if (estado == MaquinaEstado.DERROTA_PANTALLA && key == 'o') {
-        estado = MaquinaEstado.JUGANDO;
-        audioDerrota.pause();
-        audioJuego.play();
-    }
  
  if (key == CODED) {
     if (keyCode == LEFT) seleccion = (seleccion - 1 + 2) % 2;
@@ -221,11 +216,11 @@ public void keyReleased() {
       audioMenu.pause();
       estado = MaquinaEstado.JUGANDO;
       audioJuego.rewind();
-    jugador.setDurabilidad(100);
-    jugador.setPosicion(new PVector(width / 2, height - 50));
-    jugador.setVelocidad(new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
-    hud.reiniciarTiempo();
-    jugador.setPuntaje(0);
+      jugador.setDurabilidad(100);
+      jugador.setPosicion(new PVector(width / 2, height - 50));
+      jugador.setVelocidad(new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
+      hud.reiniciarTiempo();
+      jugador.setPuntaje(0);
     } else if (seleccion == 1) {
       exit(); // Salir del programa.
     }

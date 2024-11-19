@@ -4,6 +4,8 @@ public class Jugador extends GameObject implements IVisualizable{
   private PVector velocidad; 
   private int puntaje; // Se va a utilizar par almacenar el puntaje
   private int tiempoAnterior; // Variable que almacena el tiempo 
+  
+  // Variables utilizadas para la animación de la explosión
   private PImage texturaExplosion;
   private int widthFrame;
   private int heightFrame;
@@ -79,6 +81,7 @@ public class Jugador extends GameObject implements IVisualizable{
   
   public void mover(int direccion){
     switch(direccion){
+      // El jugador podra sobrepasar los limites de la pista en ningun caso
       case 1: // Se mueve hacia arriba
         if(this.posicion.y > 40){
         this.posicion.y -= this.velocidad.y;
@@ -103,8 +106,7 @@ public class Jugador extends GameObject implements IVisualizable{
   }
  
   public void debilitar(){
-    this.durabilidad -= 20;
-    println("Durabilidad: " + this.durabilidad);
+    this.durabilidad -= 20; // Si el jugador choca, se reducira la durabilidad del auto en 20 unidades
   }
   
   public void calcularPuntaje(){
@@ -118,18 +120,18 @@ public class Jugador extends GameObject implements IVisualizable{
   public void explotarAuto(){
     texturaExplosion = loadImage("explosion.png");
     imageMode(CENTER);
-      if(this.durabilidad == 0){
-        if(contFrames < 120){
+      if(this.durabilidad == 0){ // Si la durabilidad es 0
+        if(contFrames < cantFrames){ //Si el conteo de frames es menor a la cantidad de los mismos
           image(texturaExplosion.get(xFrame, yFrame, widthFrame, heightFrame), this.posicion.x, this.posicion.y, 100, 100);
-          xFrame += widthFrame;
-          contFrames++;
+          xFrame += widthFrame; // Es lo mismo que decir xFrame = xFrame + widthFrame
+          contFrames++; // Se suma en uno el conteo de frames
         if(xFrame >= texturaExplosion.width){
           xFrame = 0;
           yFrame += heightFrame;
         }
         }
       }
-    this.velocidad = new PVector(0, 0);
+    this.velocidad = new PVector(0, 0); // Al explotar el auto, se setea su velocidad en 0 en ambos ejes, provocando que no pueda moverse por tener el auto destrozado
   }
   
 }
