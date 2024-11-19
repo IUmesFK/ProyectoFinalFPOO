@@ -19,7 +19,7 @@ public class Escenario {
     capas[2] = new LayerImage(new PVector(0, height / 2), new PVector(0,-10), "pista.png");
     // Capa 2: Imagen de pista, comienza al final del eje vertical (posición inicial: (0, height))
 
- capas[3] = new LayerImage(new PVector(0, height / 2), new PVector(0, height), "pista.png");
+    capas[3] = new LayerImage(new PVector(0, height / 2), new PVector(0, height), "pista.png");
 
     capas[4] = new LayerImage(new PVector(0, height), new PVector(), "arbol.png");
     // Capa 3: Imagen de árbol que comienza desde (0, 0)

@@ -119,8 +119,7 @@ public void draw() {
 
     spawnerO.verificarColisionObstaculoJugador(jugador); // Verifica colisiones entre el jugador y obstáculos
     if (jugador.getDurabilidad() == 0) {// Cambia al estado de derrota
-      jugador.explotarAuto();
-      //estado = MaquinaEstado.DERROTA;
+      estado = MaquinaEstado.DERROTA_EXPLOSION;
       audioJuego.pause();
       audioDerrota.rewind();
       //println("se apreto c ");
@@ -133,7 +132,9 @@ public void draw() {
     break;
 
   case MaquinaEstado.DERROTA_EXPLOSION:
-
+    
+    
+    
     break;
     
   case MaquinaEstado.DERROTA_PANTALLA:
@@ -205,7 +206,7 @@ public void keyReleased() {
 
   
  
- if (estado == MaquinaEstado.DERROTA && key == 'o') {
+ if (estado == MaquinaEstado.DERROTA_PANTALLA && key == 'o') {
         estado = MaquinaEstado.JUGANDO;
         audioDerrota.pause();
         audioJuego.play();
