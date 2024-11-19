@@ -32,7 +32,6 @@ class Hud{
   
   public void mostrarTiempo(){
     this.tiempoTranscurrido = (millis() -this.tiempoInicio)/ 1000;
-   
     this.tiempoRestante = this.cuentaRegresiva - this.tiempoTranscurrido;
     
     fill(255);

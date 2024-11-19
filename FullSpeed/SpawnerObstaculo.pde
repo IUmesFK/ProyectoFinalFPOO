@@ -54,7 +54,7 @@ public class SpawnerObstaculo{
   public void verificarColisionObstaculoJugador(Jugador jugador){
     for(int i = 0; i < obstaculos.size(); i++){
       Obstaculo obs = obstaculos.get(i);
-      if(PVector.dist(jugador.getPosicion(), obs.getPosicion()) < 45){
+      if(PVector.dist(jugador.getPosicion(), obs.getPosicion()) < 80){
         jugador.debilitar();
         obstaculos.remove(i);
       }

@@ -20,7 +20,8 @@ private int seleccion;
 
 
 public void setup() {
-  size(800, 600); 
+  frameRate(60);
+  size(800, 600, P2D); 
   jugador = new Jugador(new PVector(width / 2, height - 50),
   new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
   // Inicializa el jugador en el centro inferior de la pantalla con velocidad dependiente de deltaTime
@@ -117,9 +118,9 @@ public void draw() {
     if (joyPad.isRightPressed()) jugador.mover(4);
 
     spawnerO.verificarColisionObstaculoJugador(jugador); // Verifica colisiones entre el jugador y obstáculos
-
-    if (jugador.getDurabilidad() == 0) { // Cambia al estado de derrota
-      estado = MaquinaEstado.DERROTA;
+    if (jugador.getDurabilidad() == 0) {// Cambia al estado de derrota
+      jugador.explotarAuto();
+      //estado = MaquinaEstado.DERROTA;
       audioJuego.pause();
       audioDerrota.rewind();
       //println("se apreto c ");
@@ -131,7 +132,11 @@ public void draw() {
     }
     break;
 
-  case MaquinaEstado.DERROTA:
+  case MaquinaEstado.DERROTA_EXPLOSION:
+
+    break;
+    
+  case MaquinaEstado.DERROTA_PANTALLA:
     // Pantalla de derrota
     audioDerrota.play(); // Reproduce la música de derrota
     derrota.mostrar(); // Muestra la pantalla de derrota
@@ -217,11 +222,12 @@ public void keyReleased() {
       audioJuego.rewind();
     jugador.setDurabilidad(100);
     jugador.setPosicion(new PVector(width / 2, height - 50));
+    jugador.setVelocidad(new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
     hud.reiniciarTiempo();
     jugador.setPuntaje(0);
     } else if (seleccion == 1) {
       exit(); // Salir del programa.
     }
-  } 
+  }
   
 }

@@ -12,5 +12,8 @@ class MaquinaEstado{
   public static final int VICTORIA = 3;
  
  //Estado del juego que representa la derrota del jugador
-  public static final int DERROTA = 4;
+  public static final int DERROTA_EXPLOSION = 4;
+  
+  public static final int DERROTA_PANTALLA = 5;
+  
 }

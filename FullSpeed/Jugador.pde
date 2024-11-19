@@ -1,9 +1,16 @@
 public class Jugador extends GameObject implements IVisualizable{
   
-  private int durabilidad;
-  private PVector velocidad;
-  private int puntaje;
-  private int tiempoAnterior;
+  private int durabilidad; // Representa la durabilidad del jugador
+  private PVector velocidad; 
+  private int puntaje; // Se va a utilizar par almacenar el puntaje
+  private int tiempoAnterior; // Variable que almacena el tiempo 
+  private PImage texturaExplosion;
+  private int widthFrame;
+  private int heightFrame;
+  private int xFrame;
+  private int yFrame;
+  private int cantFrames;
+  private int contFrames;
   
   /**
   ----- CONSTRUCTOR -----
@@ -14,11 +21,19 @@ public class Jugador extends GameObject implements IVisualizable{
     this.velocidad = velocidad;
     this.durabilidad = 100;
     this.tiempoAnterior = millis();
+    this.widthFrame = 64;
+    this.heightFrame = 64;
+    this.cantFrames = 25;
+    this.contFrames = 1;
   }
   
   /**
   ----- SETTERS Y GETTERS -----
   */
+  
+  public void setVelocidad(PVector velocidad){
+    this.velocidad = velocidad;
+  }
   
   public void setDurabilidad(int durabilidad){
   this.durabilidad=durabilidad;
@@ -36,14 +51,29 @@ public class Jugador extends GameObject implements IVisualizable{
     return this.puntaje;
   }
   
-  
   /**
   ----- MÉTODOS -----
   */
   
   public void display(){
     imageMode(CENTER);
-    mostrarImagen();
+      switch(durabilidad){
+        case 100:
+          textura = loadImage("auto1.png");
+          break;
+        case 80:
+          textura = loadImage("auto2.png");
+          break;
+        case 60:
+          textura = loadImage("auto3.png");
+          break;
+        case 40:
+          textura = loadImage("auto4.png");
+          break;
+        case 20:
+          textura = loadImage("auto5.png");
+          break;
+      }
     image(textura, this.posicion.x, this.posicion.y, 50, 100);
   }
   
@@ -71,28 +101,6 @@ public class Jugador extends GameObject implements IVisualizable{
         break;
     }
   }
-  
-   public void mostrarImagen(){
-  switch(durabilidad){
-  case 100:
-  textura = loadImage("auto1.png");
-  break;
-  case 80:
-  textura = loadImage("auto2.png");
-  break;
-  case 60:
-  textura = loadImage("auto3.png");
-  break;
-  case 40:
-  textura = loadImage("auto4.png");
-  break;
-  case 20:
-  textura = loadImage("auto5.png");
-  break;
-  
-  }
-  
-  }
  
   public void debilitar(){
     this.durabilidad -= 20;
@@ -106,5 +114,22 @@ public class Jugador extends GameObject implements IVisualizable{
       tiempoAnterior = tiempoActual; // Se asigna el valor de tiempo actual al tiempo anterior
     }
   }
-
+  
+  public void explotarAuto(){
+    texturaExplosion = loadImage("explosion.png");
+    imageMode(CENTER);
+      if(this.durabilidad == 0){
+        if(contFrames < 120){
+          image(texturaExplosion.get(xFrame, yFrame, widthFrame, heightFrame), this.posicion.x, this.posicion.y, 100, 100);
+          xFrame += widthFrame;
+          contFrames++;
+        if(xFrame >= texturaExplosion.width){
+          xFrame = 0;
+          yFrame += heightFrame;
+        }
+        }
+      }
+    this.velocidad = new PVector(0, 0);
+  }
+  
 }
