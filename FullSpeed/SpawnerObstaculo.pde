@@ -21,10 +21,10 @@ public class SpawnerObstaculo{
       int tipoObstaculo = int(random(1, 3));
       switch(tipoObstaculo){
         case 1: // dibujar cono
-          obstaculos.add(new Cono(new PVector(random(width/2 - 80, width/2 + 80), 0), new PVector(0, 150*Time.getDeltaTime(frameRate))));
+          obstaculos.add(new Cono(new PVector(random(width/2 - 80, width/2 + 80), -50), new PVector(0, 200*Time.getDeltaTime(frameRate))));
           break;
         case 2: // dibujar roca
-          obstaculos.add(new Roca(new PVector(random(width/2 - 80, width/2 + 80), 0), new PVector(0, 150*Time.getDeltaTime(frameRate))));
+          obstaculos.add(new Roca(new PVector(random(width/2 - 80, width/2 + 80), -50), new PVector(0, 200*Time.getDeltaTime(frameRate))));
           break;
       }
       ultimoTmp = tiempoActual;
@@ -54,7 +54,7 @@ public class SpawnerObstaculo{
   public void verificarColisionObstaculoJugador(Jugador jugador){
     for(int i = 0; i < obstaculos.size(); i++){
       Obstaculo obs = obstaculos.get(i);
-      if(PVector.dist(jugador.getPosicion(), obs.getPosicion()) < 70){
+      if(PVector.dist(jugador.getPosicion(), obs.getPosicion()) < 60){
         jugador.debilitar();
         obstaculos.remove(i);
       }

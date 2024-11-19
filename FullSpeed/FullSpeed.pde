@@ -206,11 +206,9 @@ public void keyReleased() {
   if (key == 'A' || key == 'a' || keyCode == LEFT) joyPad.setLeftPresssed(false);
   if (key == 'D' || key == 'd' || keyCode == RIGHT) joyPad.setRightPressed(false);
 
- 
- if (key == CODED) {
-    if (keyCode == LEFT) seleccion = (seleccion - 1 + 2) % 2;
-    else if (keyCode == RIGHT) seleccion = (seleccion + 1) % 2;
-  }
+  if (keyCode == LEFT || key == 'A' || key == 'a') seleccion = (seleccion - 1 + 2) % 2;
+  else if (keyCode == RIGHT || key == 'D' || key == 'd') seleccion = (seleccion + 1) % 2;
+  
   if (keyCode == ENTER) {
     if (seleccion == 0) {
       audioMenu.pause();
