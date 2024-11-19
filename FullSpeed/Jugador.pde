@@ -42,8 +42,8 @@ public class Jugador extends GameObject implements IVisualizable{
   
   public void display(){
     imageMode(CENTER);
-    textura = loadImage("auto1.png");
-    image(textura, this.posicion.x, this.posicion.y, 50, 50);
+    mostrarImagen();
+    image(textura, this.posicion.x, this.posicion.y, 50, 100);
   }
   
   public void mover(int direccion){
@@ -71,8 +71,30 @@ public class Jugador extends GameObject implements IVisualizable{
     }
   }
   
+   public void mostrarImagen(){
+  switch(durabilidad){
+  case 100:
+  textura = loadImage("auto1.png");
+  break;
+  case 80:
+  textura = loadImage("auto2.png");
+  break;
+  case 60:
+  textura = loadImage("auto3.png");
+  break;
+  case 40:
+  textura = loadImage("auto4.png");
+  break;
+  case 20:
+  textura = loadImage("auto5.png");
+  break;
+  
+  }
+  
+  }
+ 
   public void debilitar(){
-    this.durabilidad -= 10;
+    this.durabilidad -= 20;
     println("Durabilidad: " + this.durabilidad);
   }
   
