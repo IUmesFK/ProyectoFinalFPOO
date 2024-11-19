@@ -100,13 +100,14 @@ public void draw() {
       audioJuego.rewind(); // Reproduce en bucle
     }
 
-    jugador.display(); // Muestra al jugador en pantalla
+     
     jugador.calcularPuntaje();
     hud.mostrarTiempo(); // Muestra el tiempo restante en la parte superior izquierda
     hud.mostrarPuntaje(jugador); // Muestra el puntaje en la parte superior derecha
     spawnerO.generarObstaculo(); // Genera nuevos obstáculos
     spawnerO.mostrarObstaculos(); // Muestra los obstáculos en pantalla
     spawnerO.eliminarObstaculos(); // Elimina obstáculos fuera de la pantalla
+    jugador.display();
 
     // Maneja el movimiento del jugador basado en el JoyPad
     if (joyPad.isUpPressed()) jugador.mover(1);
@@ -118,7 +119,7 @@ public void draw() {
 
     if (jugador.getDurabilidad() == 0) { // Cambia al estado de derrota
       estado = MaquinaEstado.DERROTA;
-      audioJuego.pause(); // Pausa la música del juego
+      audioJuego.pause();
       audioDerrota.rewind();
       //println("se apreto c ");
     }
@@ -212,6 +213,7 @@ public void keyReleased() {
     if (seleccion == 0) {
       audioMenu.pause();
       estado = MaquinaEstado.JUGANDO;
+      audioJuego.rewind();
     jugador.setDurabilidad(100);
     jugador.setPosicion(new PVector(width / 2, height - 50));
     hud.reiniciarTiempo();
