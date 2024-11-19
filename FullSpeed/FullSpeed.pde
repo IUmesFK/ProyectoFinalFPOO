@@ -104,6 +104,7 @@ public void draw() {
     jugador.calcularPuntaje();
     hud.mostrarTiempo(); // Muestra el tiempo restante en la parte superior izquierda
     hud.mostrarPuntaje(jugador); // Muestra el puntaje en la parte superior derecha
+    hud.mostrarDurabilidad(jugador); // Muestra la durabilidad en la parte inferior izquierda
     spawnerO.generarObstaculo(); // Genera nuevos obstáculos
     spawnerO.mostrarObstaculos(); // Muestra los obstáculos en pantalla
     spawnerO.eliminarObstaculos(); // Elimina obstáculos fuera de la pantalla

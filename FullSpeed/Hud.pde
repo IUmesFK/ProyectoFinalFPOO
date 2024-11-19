@@ -53,4 +53,12 @@ class Hud{
     text("Puntaje: " + jugador.getPuntaje(), width - 20, 10);
   }
   
+  public void mostrarDurabilidad(Jugador jugador){
+    fill(255);
+    textSize(20);
+    textAlign(LEFT, BOTTOM);
+    text("Durabilidad: " + jugador.getDurabilidad(), 20, height - 20);
+  }
+  
+  
 }

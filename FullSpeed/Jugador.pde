@@ -24,13 +24,14 @@ public class Jugador extends GameObject implements IVisualizable{
   this.durabilidad=durabilidad;
   }
   
-  
   public int getDurabilidad(){
     return this.durabilidad;
   }
+  
   public void setPuntaje(int puntaje){
   this.puntaje=puntaje;
   }
+  
   public int getPuntaje(){
     return this.puntaje;
   }
