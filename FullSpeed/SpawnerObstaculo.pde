@@ -49,16 +49,38 @@ public class SpawnerObstaculo{
             println("se elimino un objeto");
         }
     }
-}
+  }
 
-  public void verificarColisionObstaculoJugador(Jugador jugador){
+  public void vaciarLista(){
+    obstaculos.clear();
+  }
+  
+  public boolean validarColision(Jugador jugador){
+    
+    boolean isCollide = true;
+    
     for(int i = 0; i < obstaculos.size(); i++){
       Obstaculo obs = obstaculos.get(i);
-      if(PVector.dist(jugador.getPosicion(), obs.getPosicion()) < 60){
+      if(jugador.getPosicion().x > obs.getPosicion().x + obs.getCollider().getAncho()){
+        isCollide = false;
+      }
+      if(jugador.getPosicion().x + 50 < obs.getPosicion().x){
+        isCollide = false;
+      }
+      if(jugador.getPosicion().y > obs.getPosicion().y + obs.getCollider().getAlto()){
+        isCollide = false;
+      }
+      if(jugador.getPosicion().y + 100 < obs.getPosicion().y){
+        isCollide = false;
+      }
+      if(isCollide == true){
         jugador.debilitar();
         obstaculos.remove(i);
       }
     }
+    
+    return isCollide;
+    
   }
   
 }

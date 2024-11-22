@@ -13,6 +13,7 @@ public class Jugador extends GameObject implements IVisualizable{
   private int yFrame;
   private int cantFrames;
   private int contFrames;
+  private Collider collider;
   
   /**
   ----- CONSTRUCTOR -----
@@ -27,6 +28,9 @@ public class Jugador extends GameObject implements IVisualizable{
     this.heightFrame = 64;
     this.cantFrames = 25;
     this.contFrames = 1;
+    this.collider = new Collider();
+    collider.setAlto(100);
+    collider.setAncho(50);
   }
   
   /**
@@ -65,6 +69,10 @@ public class Jugador extends GameObject implements IVisualizable{
     return this.puntaje;
   }
   
+  public Collider getCollider(){
+    return this.collider;
+  }
+  
   /**
   ----- MÉTODOS -----
   */
@@ -89,6 +97,7 @@ public class Jugador extends GameObject implements IVisualizable{
           break;
       }
     image(textura, this.posicion.x, this.posicion.y, 50, 100);
+    collider.display(this.posicion);
   }
   
   public void mover(int direccion){

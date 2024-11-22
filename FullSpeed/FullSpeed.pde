@@ -118,7 +118,7 @@ public void draw() {
     if (joyPad.isLeftPressed()) jugador.mover(3);
     if (joyPad.isRightPressed()) jugador.mover(4);
 
-    spawnerO.verificarColisionObstaculoJugador(jugador); // Verifica colisiones entre el jugador y obstáculos
+    spawnerO.validarColision(jugador); // Verifica colisiones entre el jugador y obstáculos
     if (jugador.getDurabilidad() == 0) {// Cambia al estado de derrota
       estado = MaquinaEstado.DERROTA_EXPLOSION;
       audioJuego.pause();
@@ -222,6 +222,7 @@ public void keyReleased() {
       jugador.setContFrames(1);
       jugador.setXFrame(0);
       jugador.setYFrame(0);
+      spawnerO.vaciarLista();
     } else if (seleccion == 1) {
       exit(); // Salir del programa.
     }
