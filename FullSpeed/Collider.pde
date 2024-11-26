@@ -2,6 +2,7 @@ class Collider{
 
   private int ancho;
   private int alto;
+  private PVector posicion;
   
   /**
   ----- CONSTRUCTOR -----
@@ -31,15 +32,45 @@ class Collider{
     return this.ancho;
   }
   
+  public void setPosicion(PVector posicion){
+    this.posicion = posicion;
+  }
+  
+  public PVector getPosicion(){
+    return this.posicion;
+  }
+  
   /**
   ----- MÉTODOS -----
   */
   
-  public void display(PVector posicion){
+  public void display(){
     noFill();
     strokeWeight(0);
     rectMode(CENTER);
-    rect(posicion.x, posicion.y, this.ancho, this.alto);
+    rect(this.posicion.x, this.posicion.y, this.ancho, this.alto);
+  }
+  
+  
+  public boolean validarColision(Collider otroCollider){
+    
+    boolean isCollide = true;
+    
+      if(this.posicion.x > otroCollider.getPosicion().x + otroCollider.getAncho()){
+        isCollide = false;
+      }
+      if(this.posicion.x + this.ancho < otroCollider.getPosicion().x){
+        isCollide = false;
+      }
+      if(this.posicion.y > otroCollider.getPosicion().y + otroCollider.getAlto()){
+        isCollide = false;
+      }
+      if(this.posicion.y + this.alto < otroCollider.getPosicion().y){
+        isCollide = false;
+      }
+      
+    return isCollide;
+    
   }
   
   

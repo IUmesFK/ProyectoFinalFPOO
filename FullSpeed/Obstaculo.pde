@@ -27,7 +27,8 @@ public class Obstaculo extends GameObject{
   public void display(){
     imageMode(CENTER);
     image(textura, this.posicion.x, this.posicion.y, 40, 40);
-    collider.display(this.posicion);
+    collider.setPosicion(this.posicion);
+    collider.display();
   }
   
   @Override

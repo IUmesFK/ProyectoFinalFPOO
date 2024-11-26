@@ -55,32 +55,16 @@ public class SpawnerObstaculo{
     obstaculos.clear();
   }
   
-  public boolean validarColision(Jugador jugador){
-    
-    boolean isCollide = true;
+  public void validarColision(Jugador jugador){
     
     for(int i = 0; i < obstaculos.size(); i++){
       Obstaculo obs = obstaculos.get(i);
-      if(jugador.getPosicion().x > obs.getPosicion().x + obs.getCollider().getAncho()){
-        isCollide = false;
-      }
-      if(jugador.getPosicion().x + 50 < obs.getPosicion().x){
-        isCollide = false;
-      }
-      if(jugador.getPosicion().y > obs.getPosicion().y + obs.getCollider().getAlto()){
-        isCollide = false;
-      }
-      if(jugador.getPosicion().y + 100 < obs.getPosicion().y){
-        isCollide = false;
-      }
-      if(isCollide == true){
+      boolean isCollide = obs.getCollider().validarColision(jugador.getCollider());
+      if(isCollide){
         jugador.debilitar();
         obstaculos.remove(i);
       }
     }
-    
-    return isCollide;
-    
   }
   
 }

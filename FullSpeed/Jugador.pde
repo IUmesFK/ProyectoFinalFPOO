@@ -97,7 +97,8 @@ public class Jugador extends GameObject implements IVisualizable{
           break;
       }
     image(textura, this.posicion.x, this.posicion.y, 50, 100);
-    collider.display(this.posicion);
+    collider.setPosicion(this.posicion);
+    collider.display();
   }
   
   public void mover(int direccion){
