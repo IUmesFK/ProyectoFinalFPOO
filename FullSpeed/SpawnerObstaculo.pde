@@ -17,14 +17,14 @@ public class SpawnerObstaculo{
   
     public void generarObstaculo(){
     int tiempoActual = millis(); 
-    if(tiempoActual - ultimoTmp > 2000){
+    if(tiempoActual - ultimoTmp > 1500){
       int tipoObstaculo = int(random(1, 3));
       switch(tipoObstaculo){
         case 1: // dibujar cono
-          obstaculos.add(new Cono(new PVector(random(width/2 - 80, width/2 + 80), -50), new PVector(0, 300*Time.getDeltaTime(frameRate))));
+          obstaculos.add(new Cono(new PVector(random(width/2 - 80, width/2 + 80), -50), new PVector(0, 500*Time.getDeltaTime(frameRate))));
           break;
         case 2: // dibujar roca
-          obstaculos.add(new Roca(new PVector(random(width/2 - 80, width/2 + 80), -50), new PVector(0, 300*Time.getDeltaTime(frameRate))));
+          obstaculos.add(new Roca(new PVector(random(width/2 - 80, width/2 + 80), -50), new PVector(0, 500*Time.getDeltaTime(frameRate))));
           break;
       }
       ultimoTmp = tiempoActual;
