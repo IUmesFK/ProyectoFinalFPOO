@@ -10,7 +10,7 @@ class Hud{
   */
   
   Hud(){
-   this.tiempoInicio = millis();  
+    this.tiempoInicio = millis();  
     this.cuentaRegresiva = 60; 
   }
   

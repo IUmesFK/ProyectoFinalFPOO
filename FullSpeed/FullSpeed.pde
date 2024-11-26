@@ -16,12 +16,15 @@ private Escenario escenario;
 private float deltaTime; 
 private int seleccion;
 private int tiempoInicial; // Se usara para el estado DERROTA_EXPLOSION
+private PFont fuente;
 
 
 public void setup() {
   frameRate(60);
 // Usamos el renderizador P2D y no el que viene por defecto (JAVA2D) ya que al tener grafica dedicada podemos sacarle mayor provecho en el apartado grafico debido a que usamos muchas imagenes, en caso de tener problemas, sacar el P2D  
-  size(800, 600, P2D); 
+  size(800, 600, P2D);
+  fuente = loadFont("Calibri-BoldItalic-48.vlw");
+  textFont(fuente);
   jugador = new Jugador(new PVector(width / 2, height - 50),
   new PVector(100 * Time.getDeltaTime(frameRate), 100 * Time.getDeltaTime(frameRate)));
   // Inicializa el jugador en el centro inferior de la pantalla con velocidad dependiente de deltaTime
