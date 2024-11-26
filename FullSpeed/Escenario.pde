@@ -1,6 +1,12 @@
 public class Escenario {
   // Arreglo para almacenar las diferentes capas visuales
   private LayerImage[] capas;
+  private PImage dodo;
+  private int widthFrame;
+  private int heightFrame;
+  private int cantFrames;
+  private int contFrames;
+  private float posY;
 
   /**
   ----- CONSTRUCTOR -----
@@ -29,6 +35,12 @@ public class Escenario {
 
     capas[6] = new LayerImage(new PVector(0, height), new PVector(0, height), "arbol.png");
     // Capa 5: Otra imagen de árbol que también comienza desde el final del eje vertical
+    
+    dodo = loadImage("dodoo.png");
+    contFrames = 0;
+    widthFrame = 48;
+    heightFrame = 64;
+    posY = 0;
   }
 
 
@@ -41,4 +53,21 @@ public class Escenario {
       layer.updatePosition(deltaTime); // Actualiza la posición de la capa según su velocidad
     }
   }
+  
+  public void mostrarDodo(){
+    int xFrame = 0;
+    if(contFrames <= cantFrames){
+    image(dodo.get(xFrame, 0, widthFrame, heightFrame), 100, posY, 48, 64);
+    xFrame += widthFrame;
+    contFrames++;
+    posY += 2;
+    if(posY > height){
+    posY = -heightFrame;
+    }
+    if(contFrames >= cantFrames){
+      contFrames = 0;
+    }
+    }
+  }
+  
 }
