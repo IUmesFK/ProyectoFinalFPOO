@@ -5,9 +5,7 @@ private Jugador jugador;
 private JoyPad joyPad; 
 private SpawnerObstaculo spawnerO; 
 private Hud hud;
-private Derrota derrota; 
-private Victoria victoria; 
-private Menu menu; 
+private Pantalla pantalla;
 private Minim sonido; 
 private AudioPlayer audioMenu, audioJuego, audioDerrota, audioVictoria; 
 private PImage logo; 
@@ -36,13 +34,12 @@ public void setup() {
   deltaTime = 1.0 / framesPorSegundo; // Calcula deltaTime para movimientos suaves
 
   escenario = new Escenario(); // Inicializa la escena del juego con capas visuales
-
+  
+  pantalla = new Pantalla();
+  
   hud = new Hud(); 
 
   estado = MaquinaEstado.LOGO; // Estado inicial del juego
-  derrota = new Derrota(); // Inicializa el estado de derrota
-  victoria = new Victoria(); // Inicializa el estado de victoria
-  menu = new Menu(); // Inicializa el menú principal
 
   sonido = new Minim(this); // Inicializa Minim para el manejo de audio
   // Carga los archivos de audio
@@ -80,7 +77,8 @@ public void draw() {
 
   case MaquinaEstado.MENU:
     // Pantalla del menú principal
-    menu.mostrar(); // Muestra el menú
+    pantalla.setRuta("Menu.png");
+    pantalla.display();
     audioMenu.play(); // Reproduce la música del menú
 
     if (audioMenu.position() >= audioMenu.length()) {
@@ -152,14 +150,16 @@ public void draw() {
   case MaquinaEstado.DERROTA_PANTALLA:
     // Pantalla de derrota
     audioDerrota.play(); // Reproduce la música de derrota
-    derrota.mostrar(); // Muestra la pantalla de derrota
+    pantalla.setRuta("Derrota.png");
+    pantalla.display();
     selector("REINTENTAR"); // Mostrar opción de reiniciar.
     break;
 
   case MaquinaEstado.VICTORIA:
     // Pantalla de victoria
     audioVictoria.play(); // Reproduce la música de victoria
-    victoria.mostrar(); // Muestra la pantalla de victoria
+    pantalla.setRuta("Victoria.png");
+    pantalla.display();
     selector("JUGAR"); // Mostrar opción de volver a jugar
     break;
   }

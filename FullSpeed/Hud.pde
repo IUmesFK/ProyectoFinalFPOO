@@ -34,7 +34,7 @@ class Hud{
     this.tiempoTranscurrido = (millis() -this.tiempoInicio)/ 1000;
     this.tiempoRestante = this.cuentaRegresiva - this.tiempoTranscurrido;
     
-    fill(255);
+    fill(0);
     textSize(20);
     textAlign(LEFT, TOP);
     
@@ -46,15 +46,15 @@ class Hud{
   }
   
   public void mostrarPuntaje(Jugador jugador){
-    fill(255);
-    textSize(20);
+    fill(0);
+    textSize(30);
     textAlign(RIGHT, TOP);
     text("Puntaje: " + jugador.getPuntaje(), width - 20, 10);
   }
   
   public void mostrarDurabilidad(Jugador jugador){
-    fill(255);
-    textSize(20);
+    fill(0);
+    textSize(30);
     textAlign(LEFT, BOTTOM);
     text("Durabilidad: " + jugador.getDurabilidad(), 20, height - 20);
   }
