@@ -64,6 +64,7 @@ public class Escenario {
   
   public void mostrarDodos(){
     
+    imageMode(CENTER);
     image(dodo[0].get(this.xFrame, 0, this.widthFrame, this.heightFrame), this.posicion[0].x, this.posicion[0].y, this.widthFrame, this.heightFrame);
     image(dodo[1].get(this.xFrame, 0, this.widthFrame, this.heightFrame), this.posicion[1].x, this.posicion[1].y, this.widthFrame, this.heightFrame);
 
