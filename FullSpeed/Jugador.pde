@@ -95,6 +95,9 @@ public class Jugador extends GameObject implements IVisualizable{
         case 20:
           textura = loadImage("auto5.png");
           break;
+        case 0:
+          tint(50);
+          break;
       }
     image(textura, this.posicion.x, this.posicion.y, 50, 100);
     collider.setPosicion(this.posicion);

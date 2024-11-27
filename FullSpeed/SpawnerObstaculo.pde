@@ -15,7 +15,7 @@ public class SpawnerObstaculo{
   ----- MÉTODOS -----
   */
   
-    public void generarObstaculo(){
+  public void generarObstaculo(){
     int tiempoActual = millis(); 
     if(tiempoActual - ultimoTmp > 1500){
       int tipoObstaculo = int(random(1, 3));

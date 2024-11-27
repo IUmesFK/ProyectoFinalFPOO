@@ -15,6 +15,10 @@ class Pantalla{
     this.ruta = ruta;
   }
   
+  /**
+  ----- MÉTODOS -----
+  */
+  
   public void display(){
     imagen = loadImage(ruta);
     imageMode(CENTER);

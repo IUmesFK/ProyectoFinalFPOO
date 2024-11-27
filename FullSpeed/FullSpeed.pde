@@ -58,6 +58,7 @@ public void setup() {
 }
 
 public void draw() {
+  noTint();
   background(0); // Limpia la pantalla con un fondo negro
 
   // Manejador de estados del juego
@@ -98,7 +99,7 @@ public void draw() {
     // Estado principal del juego
     escenario.display(deltaTime); // Muestra la escena del juego
     audioJuego.play(); // Reproduce la música del juego
-    escenario.mostrarDodo();
+    escenario.mostrarDodos();
     
     if (audioJuego.position() >= audioJuego.length()) {
       audioJuego.rewind(); // Reproduce en bucle
@@ -135,6 +136,7 @@ public void draw() {
   case MaquinaEstado.DERROTA_EXPLOSION:
     
     escenario.display(deltaTime);
+    escenario.mostrarDodos();
     jugador.display();
 
     jugador.explotarAuto();
