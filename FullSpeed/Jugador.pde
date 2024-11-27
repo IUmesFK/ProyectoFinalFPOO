@@ -108,12 +108,12 @@ public class Jugador extends GameObject implements IVisualizable{
     switch(direccion){
       // El jugador podra sobrepasar los limites de la pista en ningun caso
       case 1: // Se mueve hacia arriba
-        if(this.posicion.y > 40){
+        if(this.posicion.y > 50){
         this.posicion.y -= this.velocidad.y;
         }
         break;
       case 2: // Se mueve hacia abajo
-        if(this.posicion.y < height - 40){
+        if(this.posicion.y < height - 50){
         this.posicion.y += this.velocidad.y;
         }
         break;
