@@ -30,13 +30,13 @@ public void setup() {
   // Inicializa el jugador en el centro inferior de la pantalla con velocidad dependiente de deltaTime
 
   joyPad = new JoyPad(); 
-  spawnerO = new SpawnerObstaculo(); // Inicializa el generador de obstáculos
+  spawnerO = new SpawnerObstaculo();
   frameRate(60); // Configura la tasa de cuadros por segundo
 
   int framesPorSegundo = round(frameRate); // Calcula frames por segundo reales
   deltaTime = 1.0 / framesPorSegundo; // Calcula deltaTime para movimientos suaves
 
-  escenario = new Escenario(); // Inicializa la escena del juego con capas visuales
+  escenario = new Escenario();
   
   pantalla = new Pantalla();
   
@@ -44,7 +44,7 @@ public void setup() {
 
   estado = MaquinaEstado.LOGO; // Estado inicial del juego
 
-  sonido = new Minim(this); // Inicializa Minim para el manejo de audio
+  sonido = new Minim(this);
   // Carga los archivos de audio
   audioMenu = sonido.loadFile("menu.mp3");
   audioJuego = sonido.loadFile("juego.mp3");
@@ -122,7 +122,7 @@ public void draw() {
     if (joyPad.isRightPressed()) jugador.mover(4);
 
     spawnerO.validarColision(jugador); // Verifica colisiones entre el jugador y obstáculos
-    if (jugador.getDurabilidad() == 0) {// Cambia al estado de derrota
+    if (jugador.getDurabilidad() == 0) { //Cambia al estado de derrota
       estado = MaquinaEstado.DERROTA_EXPLOSION;
       audioJuego.pause();
       audioDerrota.rewind();
