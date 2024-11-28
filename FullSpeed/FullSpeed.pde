@@ -13,7 +13,6 @@ private int velocidadLogo;
 private int presentacion; 
 private int estado; 
 private Escenario escenario; 
-private float deltaTime; 
 private int seleccion;
 private int tiempoInicial; // Se usara para el estado DERROTA_EXPLOSION
 private PFont fuente;
@@ -33,8 +32,7 @@ public void setup() {
   spawnerO = new SpawnerObstaculo();
   frameRate(60); // Configura la tasa de cuadros por segundo
 
-  int framesPorSegundo = round(frameRate); // Calcula frames por segundo reales
-  deltaTime = 1.0 / framesPorSegundo; // Calcula deltaTime para movimientos suaves
+
 
   escenario = new Escenario();
   
@@ -97,7 +95,7 @@ public void draw() {
 
   case MaquinaEstado.JUGANDO:
     // Estado principal del juego
-    escenario.display(deltaTime); // Muestra la escena del juego
+    escenario.display(Time.getDeltaTime(frameRate)); // Muestra la escena del juego
     audioJuego.play(); // Reproduce la música del juego
     escenario.mostrarDodos();
     
@@ -135,7 +133,7 @@ public void draw() {
 
   case MaquinaEstado.DERROTA_EXPLOSION:
     
-    escenario.display(deltaTime);
+    escenario.display(Time.getDeltaTime(frameRate));
     escenario.mostrarDodos();
     jugador.display();
 
